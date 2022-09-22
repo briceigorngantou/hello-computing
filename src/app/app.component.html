@@ -4,7 +4,174 @@
       <a class="navbar-brand" href="#">My App test in Angular & NodeJs</a>
     </div>
   </nav>
-  <div>
-    <app-my-component [dataPicture]="result"></app-my-component>
+  <div class="container">
+    <h4 class="title">
+      Choose the figure whose perimeter or area you want to calculate
+    </h4>
+    <div class="row">
+      <div class="col" *ngFor="let items of pictures">
+        <div
+          class="card"
+          style="width: 15rem"
+          (click)="PictureSelected(items.getName())"
+        >
+          <i class="{{ items.getPictureName() }}" aria-hidden="true"></i>
+          <div class="card-body">
+            <h5 class="card-title">
+              Picture :
+              <strong>{{ items.getName() }}</strong>
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <form [hidden]="showForm" class="form-control">
+        <div [hidden]="showForm1" class="row form">
+          <div class="col form-pic">
+            <label for="id-side" class="form-label" aria-
+              >Side of square:
+            </label>
+            <input
+              #side
+              id="id-side"
+              type="number"
+              class="form-control form-input"
+              (change)="handleSide(side)"
+            />
+          </div>
+        </div>
+
+        <div [hidden]="showForm2" class="row form">
+          <div class="col form-pic">
+            <label for="id-raduis" class="form-label"
+              >Raduis of circle :
+            </label>
+            <input
+              #raduis
+              id="id-raduis"
+              type="number"
+              class="form-control form-input"
+              (change)="handleRaduis(raduis)"
+            />
+          </div>
+        </div>
+
+        <div [hidden]="showForm3" class="row form">
+          <div class="col form-pic">
+            <label for="id-width" class="form-label"
+              >Width of rectangle :
+            </label>
+            <input
+              #width
+              id="id-width"
+              type="number"
+              class="form-control form-input"
+              (change)="handleWidth(width)"
+            />
+          </div>
+          <div class="col form-pic">
+            <label for="id-length" class="form-label"
+              >Length of rectangle :
+            </label>
+            <input
+              #length
+              id="id-length"
+              type="number"
+              class="form-control form-input"
+              (change)="handleLength(length)"
+            />
+          </div>
+        </div>
+
+        <div class="row form" [hidden]="showForm4">
+          <div class="col form-pic">
+            <label for="id-firstSide" class="form-label"
+              >First side of triangle :
+            </label>
+            <input
+              #side1
+              id="id-firstSide"
+              type="number"
+              class="form-control form-input"
+              (change)="handleSide1(side1)"
+            />
+          </div>
+          <div class="col form-pic">
+            <label for="id-secondSide" class="form-label"
+              >Second side of triangle :
+            </label>
+            <input
+              #side2
+              id="id-secondSide"
+              type="number"
+              class="form-control form-input"
+              (change)="handleSide2(side2)"
+            />
+          </div>
+          <div class="col form-pic">
+            <label for="id-thirdtSide" class="form-label"
+              >Third side of triangle :
+            </label>
+            <input
+              #side3
+              id="id-thirdtSide"
+              type="number"
+              class="form-control form-input"
+              (change)="handleSide3(side3)"
+            />
+          </div>
+        </div>
+
+        <div class="check">
+          <div class="form-check">
+            <input
+              id="perimeter"
+              class="form-check-input"
+              type="checkbox"
+              value="{{ chekboxPerimeter }}"
+              name="checked"
+              (change)="onChangeCheckBoxPerimeter()"
+              [(ngModel)]="chekboxPerimeter"
+            />
+            <label class="form-check-label" for="perimeter"> Perimeter </label>
+          </div>
+          <div class="form-check">
+            <input
+              id="area"
+              class="form-check-input"
+              type="checkbox"
+              value="{{ chekboxArea }}"
+              name="checked"
+              (change)="onChangeCheckBoxArea()"
+              [(ngModel)]="chekboxArea"
+            />
+            <label class="form-check-label" for="area"> Area </label>
+          </div>
+        </div>
+
+        <div [hidden]="showForm" class="form-group">
+          <label class="form-label">Choose the unit of measure</label>
+          <select
+            class="form-control form-select"
+            (change)="onChange($event.target)"
+          >
+            <option *ngFor="let item of unit" value="{{ item.value }}">
+              {{ item.name }} ({{ item.value }})
+            </option>
+          </select>
+        </div>
+        <div class="form-result">
+          <button class="btn btn-primary" (click)="handleSubmit()">
+            Submit
+          </button>
+          <h5 [hidden]="show">
+            The perimeter of the {{ picName }} is :
+            <strong>
+              {{ getResult(picName, getChoise(), device) }} {{ device }}</strong
+            >
+          </h5>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
