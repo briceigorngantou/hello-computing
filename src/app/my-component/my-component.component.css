@@ -1,0 +1,11 @@
+.container {
+  border: 7px solid;
+  border-color: rgb(250, 251, 253);
+  padding: 2%;
+  border-radius: 15px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.title{
+  margin-bottom:25px ;
+}
