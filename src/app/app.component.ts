@@ -12,8 +12,6 @@ import { Figure } from './../app/models/Figure';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  rectangleImage = './assets/rectangle.png';
-  // triangleImage = './assets/triangle.png';
 
   constructor(private service: HttpServiceService) {}
 

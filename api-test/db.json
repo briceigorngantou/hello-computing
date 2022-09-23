@@ -1,0 +1,50 @@
+{
+  "unit": [
+    {
+      "id": 1,
+      "name": "m",
+      "factorPerimeter": 1,
+      "factorArea": 1
+    },
+    {
+      "id": 2,
+      "name": "dm",
+      "factorPerimeter": 10,
+      "factorArea": 100
+    },
+    {
+      "id": 3,
+      "name": "cm",
+      "factorPerimeter": 100,
+      "factorArea": 10000
+    },
+    {
+      "id": 4,
+      "name": "km",
+      "factorPerimeter": 1000,
+      "factorArea": 1000000
+    }
+  ],
+  "picture": [
+    {
+      "id": 1,
+      "name": "square",
+      "pictureName": "fa fa-square-o"
+    },
+    {
+      "id": 2,
+      "name": "circle",
+      "pictureName": "fa fa-circle-thin"
+    },
+    {
+      "id": 3,
+      "name": "rectangle",
+      "pictureName": "fa-light fa-rectangle"
+    },
+    {
+      "id": 4,
+      "name": "triangle",
+      "pictureName": "fa-light fa-rectangle-wide"
+    }
+  ]
+}
