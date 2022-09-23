@@ -5,7 +5,7 @@ export class Square extends Figure {
   perimeter: number;
   area: number;
 
-  constructor(side = 0, name = 'square', pic = 'fa fa-square-o') {
+  constructor(side = 0, name = 'square', pic = './../assets/square.png') {
     super(name, pic);
     this.side = side;
     this.perimeter = 0;
@@ -19,7 +19,7 @@ export class Square extends Figure {
   }
 
   getPerimeter() {
-    if (this.side && this.side > 0) {
+    if (this.side > 0) {
       this.perimeter = this.side * 4;
       return this.perimeter;
     } else {
@@ -29,7 +29,7 @@ export class Square extends Figure {
   }
 
   getArea() {
-    if (this.side && this.side > 0) {
+    if (this.side > 0) {
       this.area = this.side * this.side;
       return this.area;
     } else {

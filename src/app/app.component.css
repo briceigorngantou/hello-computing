@@ -13,8 +13,8 @@
   margin-top: 2%;
   margin-bottom: 2%;
 }
-.title{
-  margin-bottom:25px ;
+.title {
+  margin-bottom: 25px;
 }
 
 .row {
@@ -40,9 +40,6 @@
 .card:hover {
   box-shadow: 0px 0px 10px #777, 0px 0px 10px rgb(248, 246, 246);
 }
-.fa {
-  font-size: 150px;
-}
 .form-label {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -51,6 +48,10 @@
 }
 .form {
   flex-direction: column;
+}
+.img {
+  width: 150px;
+  height: 150px;
 }
 .form-pic {
   justify-content: space-between;
@@ -75,16 +76,19 @@
 .form-group {
   flex-direction: row;
   display: flex;
+}
+span {
+  flex-direction: row;
+  display: flex;
   width: 50%;
   justify-content: space-between;
 }
-
-.form-result{
+.form-result {
   width: 80%;
   display: flex;
   margin-top: 20px;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: center;
 }
 

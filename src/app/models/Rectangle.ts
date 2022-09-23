@@ -10,7 +10,7 @@ export class Rectangle extends Figure {
     width = 0,
     length = 0,
     name = 'rectangle',
-    pic = 'fa fa-square-o'
+    pic = './../assets/rectangle.png'
   ) {
     super(name, pic);
     this.width = width;
@@ -21,7 +21,6 @@ export class Rectangle extends Figure {
   getWidth() {
     return this.width;
   }
-
   getLength() {
     return this.length;
   }
@@ -29,18 +28,12 @@ export class Rectangle extends Figure {
   setWidth(value: number) {
     this.width = value;
   }
-
   setLength(value: number) {
     this.length = value;
   }
 
   getPerimeter() {
-    if (
-      typeof this.width === 'number' &&
-      typeof this.length === 'number' &&
-      this.width > 0 &&
-      this.length > 0
-    ) {
+    if (this.width > 0 && this.length > 0) {
       this.perimeter = (this.width + this.length) * 2;
       return this.perimeter;
     } else {
@@ -50,12 +43,7 @@ export class Rectangle extends Figure {
   }
 
   getArea() {
-    if (
-      typeof this.width === 'number' &&
-      typeof this.length === 'number' &&
-      this.width > 0 &&
-      this.length > 0
-    ) {
+    if (this.width > 0 && this.length > 0) {
       this.area = this.width * this.length;
       return this.area;
     } else {

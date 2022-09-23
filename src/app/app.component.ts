@@ -12,6 +12,9 @@ import { Figure } from './../app/models/Figure';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  rectangleImage = './assets/rectangle.png';
+  // triangleImage = './assets/triangle.png';
+
   constructor(private service: HttpServiceService) {}
 
   pic: object;
@@ -30,25 +33,26 @@ export class AppComponent implements OnInit {
   picName: string;
   side: number;
   raduis: number;
+  base: number;
+  height: number;
   length: number;
   width: number;
   side1: number;
   side2: number;
   side3: number;
-  device = 'm';
+  device: string;
   show = true;
   chekboxPerimeter = false;
   chekboxArea = false;
-
   ngOnInit(): void {
     this.getDataPicture();
     this.getDataUnit();
     this.pictures = [this.square, this.circle, this.rectangle, this.triangle];
     this.unit = [
-      { id: 1, name: 'Meters', value: 'm' },
-      { id: 2, name: 'Decimeters', value: 'dm' },
-      { id: 3, name: 'Centimers', value: 'cm' },
-      { id: 4, name: 'Kilometers', value: 'km' },
+      { id: 1, name: 'Meters', unitPerimeter: 'm', unitArea: 'm^2' },
+      { id: 2, name: 'Decimeters', unitPerimeter: 'dm', unitArea: 'dm^2' },
+      { id: 3, name: 'Centimers', unitPerimeter: 'cm', unitArea: 'cm^2' },
+      { id: 4, name: 'Kilometers', unitPerimeter: 'km', unitArea: 'km^2' },
     ];
   }
 
@@ -79,6 +83,13 @@ export class AppComponent implements OnInit {
     console.log('area:', this.chekboxArea, 'perimeter:', this.chekboxPerimeter);
   }
 
+  getshow() {
+    if (this.chekboxArea && !this.showForm4) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   getChoise() {
     if (this.chekboxPerimeter) {
       return 'perimeter';
@@ -87,6 +98,7 @@ export class AppComponent implements OnInit {
     }
   }
 
+  //returns the result of the calculation based on the selected data
   getResult(name: string, choice: string, unit: string) {
     if (choice === 'perimeter') {
       switch (name) {
@@ -114,28 +126,23 @@ export class AppComponent implements OnInit {
             'm',
             unit
           );
-        // default:
-        //   alert('Choix non pris en charge');
-        //   return null;
       }
     } else {
       switch (name) {
         case 'square':
-          return this.getConvertArea(this.square.getArea(), 'm', unit);
+          return this.getConvertArea(this.square.getArea(), 'm^2', unit);
         case 'circle':
-          return this.getConvertArea(this.circle.getArea(), 'm', unit);
+          return this.getConvertArea(this.circle.getArea(), 'm^2', unit);
         case 'rectangle':
-          return this.getConvertArea(this.rectangle.getArea(), 'm', unit);
-        // case 'triangle':
-        //   return this.getConvertArea(this.triangle.getArea(), 'm', unit);
-        // default:
-        //   alert('Choix non pris en charge');
-        //   return null;
+          return this.getConvertArea(this.rectangle.getArea(), 'm^2', unit);
+        case 'triangle':
+          return this.getConvertArea(this.triangle.getArea(), 'm^2', unit);
       }
     }
     return null;
   }
 
+  // Input recovery
   handleSide(input) {
     this.side = Number(input.value);
   }
@@ -157,6 +164,13 @@ export class AppComponent implements OnInit {
   handleSide3(input) {
     this.side3 = Number(input.value);
   }
+  handleBase(input) {
+    this.base = Number(input.value);
+  }
+  handleHeight(input) {
+    this.height = Number(input.value);
+  }
+  // registration of inputs
   handleSubmit() {
     this.square.setSide(this.side);
     this.circle.setraduis(this.raduis);
@@ -165,10 +179,12 @@ export class AppComponent implements OnInit {
     this.triangle.setside1(this.side1);
     this.triangle.setside2(this.side2);
     this.triangle.setside3(this.side3);
+    this.triangle.setBase(this.base);
+    this.triangle.setHeight(this.height);
     this.show = false;
     console.log(this.square, this.circle, this.rectangle, this.triangle);
   }
-
+  //image selection
   PictureSelected(name: string) {
     switch (name) {
       case 'square':
@@ -211,7 +227,7 @@ export class AppComponent implements OnInit {
     this.device = 'm';
   }
 
-  //
+  // perimeter conversion (m,dm,cm,km)
   getConvertPerimeter(value: number, startUnit: string, endUnit: string) {
     switch (startUnit) {
       case 'm':
@@ -276,65 +292,68 @@ export class AppComponent implements OnInit {
     }
   }
 
-  //
+  // area conversion (m,dm,cm and km)^2
   getConvertArea(value: number, startUnit: string, endUnit: string) {
     switch (startUnit) {
-      case 'm':
+      case 'm^2':
         return this.getAreaToMeter(value, endUnit);
-      case 'dm':
+      case 'dm^2':
         return this.getAreaToDecimeter(value, endUnit);
-      case 'cm':
+      case 'cm^2':
         return this.getAreaToCentimeter(value, endUnit);
-      case 'km':
+      case 'km^2':
         return this.getAreaToKilometer(value, endUnit);
       default:
         return 'Choix non pris en charge';
     }
   }
-  // function getting area
+  // function getting area to square meter
   getAreaToMeter(value: number, unitName: string) {
     switch (unitName) {
-      case 'dm':
+      case 'dm^2':
         return value * 100;
-      case 'cm':
+      case 'cm^2':
         return value * 10000;
-      case 'km':
+      case 'km^2':
         return value / 1000000;
       default:
         return value;
     }
   }
+  // function getting area to square decimeter
   getAreaToDecimeter(value: number, unitName: string) {
     switch (unitName) {
-      case 'cm':
+      case 'cm^2':
         return value * 100;
-      case 'm':
+      case 'm^2':
         return value / 100;
-      case 'km':
+      case 'km^2':
         return value / 100000000;
       default:
         return value;
     }
   }
+  //function getting area to cm^2
   getAreaToCentimeter(value: number, unitName: string) {
     switch (unitName) {
-      case 'dm':
+      case 'dm^2':
         return value / 100;
-      case 'm':
+      case 'm^2':
         return value / 10000;
-      case 'km':
+      case 'km^2':
         return value / 10000000000;
       default:
         return value;
     }
   }
+  // getting area to km^2
   getAreaToKilometer(value: number, unitName: string) {
     switch (unitName) {
-      case 'm':
+      case 'm^2':
         return value * 1000000;
-      case 'dm':
+      case 'dm^2':
         return value * 100000000;
-      case 'cm':
+      case 'cm^2':
         return value * 10000000000;
       default:
         return value;

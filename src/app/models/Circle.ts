@@ -5,7 +5,7 @@ export class Circle extends Figure {
   perimeter: number;
   area: number;
 
-  constructor(raduis = 0, name = 'circle', pic = 'fa fa-circle-thin') {
+  constructor(raduis = 0, name = 'circle', pic = './../assets/circle.png') {
     super(name, pic);
     this.raduis = raduis;
     this.perimeter = 0;
@@ -20,7 +20,7 @@ export class Circle extends Figure {
   }
 
   getPerimeter() {
-    if (this.raduis && this.raduis > 0) {
+    if (this.raduis > 0) {
       this.perimeter = this.raduis * Math.PI;
       return this.perimeter;
     } else {
@@ -30,7 +30,7 @@ export class Circle extends Figure {
   }
 
   getArea() {
-    if (this.raduis && this.raduis > 0) {
+    if (this.raduis > 0) {
       this.area = this.raduis * this.raduis * Math.PI;
       return this.area;
     } else {
