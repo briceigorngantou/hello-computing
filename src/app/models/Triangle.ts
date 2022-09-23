@@ -9,21 +9,8 @@ export class Triangle extends Figure {
   perimeter: number;
   area: number;
 
-  constructor(
-    side1 = 0,
-    side2 = 0,
-    side3 = 0,
-    base = 0,
-    height = 0,
-    name = 'triangle',
-    pic = './../assets/triangle.png'
-  ) {
+  constructor(name = 'triangle', pic = './../assets/triangle.png') {
     super(name, pic);
-    this.side1 = side1;
-    this.side2 = side2;
-    this.side3 = side3;
-    (this.base = base), (this.height = height), (this.perimeter = 0);
-    this.area = 0;
   }
   getside1() {
     return this.side1;

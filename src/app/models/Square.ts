@@ -5,11 +5,8 @@ export class Square extends Figure {
   perimeter: number;
   area: number;
 
-  constructor(side = 0, name = 'square', pic = './../assets/square.png') {
+  constructor(name = 'square', pic = './../assets/square.png') {
     super(name, pic);
-    this.side = side;
-    this.perimeter = 0;
-    this.area = 0;
   }
   getSide() {
     return this.side;

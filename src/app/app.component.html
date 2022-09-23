@@ -15,22 +15,34 @@
           style="width: 15rem"
           (click)="PictureSelected(items.getName())"
         >
-        <img
-        src="{{ items.getPictureName() }}"
-        class="img"
-        alt="{{ items.getName() }}"
-        aria-hidden="true"
-        />
-        <div class="card-body">
-          <h5 class="card-title">
-            Picture :
-            <strong>{{ items.getName() }}</strong>
-          </h5>
+          <img
+            src="{{ items.getPictureName() }}"
+            class="img"
+            alt="{{ items.getName() }}"
+            aria-hidden="true"
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              Picture :
+              <strong>{{ items.getName() }}</strong>
+            </h5>
+          </div>
         </div>
       </div>
-    </div>
 
       <form [hidden]="showForm" class="form-control">
+        <span [hidden]="showForm">
+          <label class="form-label">Choose the unit of measure</label>
+          <select
+            class="form-control form-select"
+            (change)="onChange($event.target)"
+            value="{{ startUnit }}"
+          >
+            <option *ngFor="let item of unit" value="{{ item.unitPerimeter }}">
+              {{ item.name }} ({{ item.unitPerimeter }})
+            </option>
+          </select></span
+        >
         <div [hidden]="showForm1" class="row form">
           <label class="form-label" style="font-weight: 700"
             >Please enter</label
@@ -200,10 +212,10 @@
 
         <div [hidden]="showForm" class="form-group">
           <span [hidden]="!chekboxPerimeter">
-            <label class="form-label">Choose the unit of measure</label>
+            <label class="form-label">Choose the unit of the perimeter</label>
             <select
               class="form-control form-select"
-              (change)="onChange($event.target)"
+              (change)="onChangePmt($event.target)"
             >
               <option
                 *ngFor="let item of unit"
@@ -214,10 +226,10 @@
             </select></span
           >
           <span [hidden]="!chekboxArea">
-            <label class="form-label">Choose the unit of measure</label>
+            <label class="form-label">Choose the unit of area</label>
             <select
               class="form-control form-select"
-              (change)="onChange($event.target)"
+              (change)="onChangeArea($event.target)"
             >
               <option *ngFor="let item of unit" value="{{ item.unitArea }}">
                 {{ item.name }} ({{ item.unitArea }})
@@ -232,7 +244,8 @@
           <h5 [hidden]="show">
             The {{ getChoise() }} of the {{ picName }} is :
             <strong>
-              {{ getResult(picName, getChoise(), device) }} {{ device }}</strong
+              {{ getResult(picName, getChoise(), startUnit, endUnit) }}
+              {{ endUnit }}</strong
             >
           </h5>
         </div>

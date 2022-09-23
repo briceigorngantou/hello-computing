@@ -12,7 +12,6 @@ import { Figure } from './../app/models/Figure';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
   constructor(private service: HttpServiceService) {}
 
   pic: object;
@@ -23,6 +22,7 @@ export class AppComponent implements OnInit {
   triangle = new Triangle();
   pictures: Figure[];
   unit: any[];
+  show = true;
   showForm = false;
   showForm1 = true;
   showForm2 = true;
@@ -38,8 +38,8 @@ export class AppComponent implements OnInit {
   side1: number;
   side2: number;
   side3: number;
-  device: string;
-  show = true;
+  startUnit = 'm';
+  endUnit = 'm';
   chekboxPerimeter = false;
   chekboxArea = false;
   ngOnInit(): void {
@@ -67,18 +67,24 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onChange(deviceValue) {
-    this.device = deviceValue.value;
+  onChange(select) {
+    this.startUnit = select.value;
+  }
+  onChangePmt(input) {
+    this.endUnit = input.value;
+  }
+  onChangeArea(select) {
+    this.endUnit = select.value;
   }
   onChangeCheckBoxPerimeter() {
     this.chekboxArea = false;
     this.chekboxPerimeter = true;
-    console.log('area:', this.chekboxArea, 'perimeter:', this.chekboxPerimeter);
+    this.chekboxPerimeter ? (this.endUnit = 'm') : (this.endUnit = 'm^2');
   }
   onChangeCheckBoxArea() {
     this.chekboxArea = true;
     this.chekboxPerimeter = false;
-    console.log('area:', this.chekboxArea, 'perimeter:', this.chekboxPerimeter);
+    this.chekboxPerimeter ? (this.endUnit = 'm') : (this.endUnit = 'm^2');
   }
 
   getshow() {
@@ -96,45 +102,76 @@ export class AppComponent implements OnInit {
     }
   }
 
+  getChangeStartUnit(value) {
+    switch (value) {
+      case 'm':
+        return 'm^2';
+      case 'dm':
+        return 'dm^2';
+      case 'cm':
+        return 'cm^2';
+      case 'km':
+        return 'km^2';
+      default:
+        return 'm^2';
+    }
+  }
+
   //returns the result of the calculation based on the selected data
-  getResult(name: string, choice: string, unit: string) {
+  getResult(name: string, choice: string, unitStart, unitEnd: string) {
     if (choice === 'perimeter') {
       switch (name) {
         case 'square':
           return this.getConvertPerimeter(
             this.square.getPerimeter(),
-            'm',
-            unit
+            unitStart,
+            unitEnd
           );
         case 'circle':
           return this.getConvertPerimeter(
             this.circle.getPerimeter(),
-            'm',
-            unit
+            unitStart,
+            unitEnd
           );
         case 'rectangle':
           return this.getConvertPerimeter(
             this.rectangle.getPerimeter(),
-            'm',
-            unit
+            unitStart,
+            unitEnd
           );
         case 'triangle':
           return this.getConvertPerimeter(
             this.triangle.getPerimeter(),
-            'm',
-            unit
+            unitStart,
+            unitEnd
           );
       }
     } else {
       switch (name) {
         case 'square':
-          return this.getConvertArea(this.square.getArea(), 'm^2', unit);
+          return this.getConvertArea(
+            this.square.getArea(),
+            this.getChangeStartUnit(unitStart),
+            unitEnd
+          );
         case 'circle':
-          return this.getConvertArea(this.circle.getArea(), 'm^2', unit);
+          return this.getConvertArea(
+            this.circle.getArea(),
+            this.getChangeStartUnit(unitStart),
+            unitEnd
+          );
         case 'rectangle':
-          return this.getConvertArea(this.rectangle.getArea(), 'm^2', unit);
+          return this.getConvertArea(
+            this.rectangle.getArea(),
+            this.getChangeStartUnit(unitStart),
+            unitEnd
+          );
         case 'triangle':
-          return this.getConvertArea(this.triangle.getArea(), 'm^2', unit);
+          return this.getConvertArea(
+            this.triangle.getArea(),
+            this.getChangeStartUnit(unitStart),
+            unitEnd
+          );
       }
     }
     return null;
@@ -180,7 +217,6 @@ export class AppComponent implements OnInit {
     this.triangle.setBase(this.base);
     this.triangle.setHeight(this.height);
     this.show = false;
-    console.log(this.square, this.circle, this.rectangle, this.triangle);
   }
   //image selection
   PictureSelected(name: string) {
@@ -222,7 +258,7 @@ export class AppComponent implements OnInit {
         break;
     }
     this.showForm = false;
-    this.device = 'm';
+    this.show = true;
   }
 
   // perimeter conversion (m,dm,cm,km)

@@ -5,11 +5,8 @@ export class Circle extends Figure {
   perimeter: number;
   area: number;
 
-  constructor(raduis = 0, name = 'circle', pic = './../assets/circle.png') {
+  constructor(name = 'circle', pic = './../assets/circle.png') {
     super(name, pic);
-    this.raduis = raduis;
-    this.perimeter = 0;
-    this.area = 0;
   }
   getraduis() {
     return this.raduis;

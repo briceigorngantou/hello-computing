@@ -7,16 +7,10 @@ export class Rectangle extends Figure {
   area: number;
 
   constructor(
-    width = 0,
-    length = 0,
     name = 'rectangle',
     pic = './../assets/rectangle.png'
   ) {
     super(name, pic);
-    this.width = width;
-    this.length = length;
-    this.perimeter = 0;
-    this.area = 0;
   }
   getWidth() {
     return this.width;
