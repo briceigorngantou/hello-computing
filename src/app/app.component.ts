@@ -14,7 +14,7 @@ import { Figure } from './../app/models/Figure';
 export class AppComponent implements OnInit {
   constructor(private service: HttpServiceService) {}
 
-  pic: object;
+  pic: any;
   dataUnit: object;
   square = new Square();
   circle = new Circle();
@@ -54,12 +54,15 @@ export class AppComponent implements OnInit {
     ];
   }
 
+  // Recovering image data from the api
   getDataPicture() {
     this.service.getPicture().subscribe((response) => {
       this.pic = response;
-      console.log(this.pic);
+      localStorage.setItem('picture', this.pic);
     });
+    console.log(localStorage.getItem('picture'));
   }
+  // Recovering unit data from the api
   getDataUnit() {
     this.service.getUnit().subscribe((response) => {
       this.dataUnit = response;
@@ -67,26 +70,32 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // reading the event from the start unit
   onChange(select) {
     this.startUnit = select.value;
   }
+  // unit of result of the perimeter
   onChangePmt(input) {
     this.endUnit = input.value;
   }
+  // unit of result of the area
   onChangeArea(select) {
     this.endUnit = select.value;
   }
+  // read the event if perimeter is chosen
   onChangeCheckBoxPerimeter() {
     this.chekboxArea = false;
     this.chekboxPerimeter = true;
     this.chekboxPerimeter ? (this.endUnit = 'm') : (this.endUnit = 'm^2');
   }
+  // read the event if area is chosen
   onChangeCheckBoxArea() {
     this.chekboxArea = true;
     this.chekboxPerimeter = false;
     this.chekboxPerimeter ? (this.endUnit = 'm') : (this.endUnit = 'm^2');
   }
 
+  //display the form for calculating the area of the triangle
   getshow() {
     if (this.chekboxArea && !this.showForm4) {
       return false;
@@ -101,7 +110,6 @@ export class AppComponent implements OnInit {
       return 'area';
     }
   }
-
   getChangeStartUnit(value) {
     switch (value) {
       case 'm':

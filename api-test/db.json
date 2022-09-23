@@ -1,29 +1,14 @@
 {
   "unit": [
-    {
-      "id": 1,
-      "name": "m",
-      "factorPerimeter": 1,
-      "factorArea": 1
-    },
+    { "id": 1, "name": "Meters", "unitPerimeter": "m", "unitArea": "m^2" },
     {
       "id": 2,
-      "name": "dm",
-      "factorPerimeter": 10,
-      "factorArea": 100
+      "name": "Decimeters",
+      "unitPerimeter": "dm",
+      "unitArea": "dm^2"
     },
-    {
-      "id": 3,
-      "name": "cm",
-      "factorPerimeter": 100,
-      "factorArea": 10000
-    },
-    {
-      "id": 4,
-      "name": "km",
-      "factorPerimeter": 1000,
-      "factorArea": 1000000
-    }
+    { "id": 3, "name": "Centimers", "unitPerimeter": "cm", "unitArea": "cm^2" },
+    { "id": 4, "name": "Kilometers", "unitPerimeter": "km", "unitArea": "km^2" }
   ],
   "picture": [
     {

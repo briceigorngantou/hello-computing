@@ -1,27 +1,10 @@
-# AppTest
+----------------Documentation pour execution du projet------------------------
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1- Apres a voir cloner le projet sur votre machine  ouvrir un terminal a la racine du projet
+2- Executer la commande `` npm install ``
+3- Ensuite executer la commande `` cd api-test ``
+4- executer la commande `` npm install `` pour telecharger les dependances necessaire pour faire fonctionner le serveur
+5- Executer `` nodemon index.js `` pour lancer le serveur
+6- Ouvrir un autre terminal a la racine du projet 
+7- Executer la commande `` ng serve --proxy-config proxy.conf.json `` pour lancer le projet 
+8- L'application demarrera sur le port 4200 a l'addess `` http://localhost:4200/`` dans votre naviateur
