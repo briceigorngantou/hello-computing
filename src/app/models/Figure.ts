@@ -1,6 +1,6 @@
 export class Figure {
-   name: string;
-   pictureName: string;
+  name: string;
+  pictureName: string;
 
   constructor(Name = '', pic = '') {
     this.name = Name;

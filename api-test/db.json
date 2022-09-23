@@ -14,22 +14,22 @@
     {
       "id": 1,
       "name": "square",
-      "pictureName": "fa fa-square-o"
+      "pictureName": "./../assets/square.png"
     },
     {
       "id": 2,
       "name": "circle",
-      "pictureName": "fa fa-circle-thin"
+      "pictureName": "./../assets/circle.png"
     },
     {
       "id": 3,
       "name": "rectangle",
-      "pictureName": "fa-light fa-rectangle"
+      "pictureName": "./../assets/rectangle.png"
     },
     {
       "id": 4,
       "name": "triangle",
-      "pictureName": "fa-light fa-rectangle-wide"
+      "pictureName": "./../assets/triangle.png"
     }
   ]
 }

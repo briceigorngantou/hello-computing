@@ -14,8 +14,8 @@ import { Figure } from './../app/models/Figure';
 export class AppComponent implements OnInit {
   constructor(private service: HttpServiceService) {}
 
-  pic: any;
-  dataUnit: object;
+  pic: any = [];
+  dataUnit: any = [];
   square = new Square();
   circle = new Circle();
   rectangle = new Rectangle();
@@ -58,15 +58,12 @@ export class AppComponent implements OnInit {
   getDataPicture() {
     this.service.getPicture().subscribe((response) => {
       this.pic = response;
-      localStorage.setItem('picture', this.pic);
     });
-    console.log(localStorage.getItem('picture'));
   }
   // Recovering unit data from the api
   getDataUnit() {
     this.service.getUnit().subscribe((response) => {
       this.dataUnit = response;
-      console.log(this.dataUnit);
     });
   }
 
